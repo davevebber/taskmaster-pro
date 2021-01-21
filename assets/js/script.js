@@ -257,6 +257,14 @@ $("#modalDueDate").datepicker({
   minDate: 1
 });
 
+// runs audit tasks periodically
+setInterval(function () {
+  $(".card .list-group-item").each(function(index, el) {
+    auditTask(el);
+  });
+}, (1000 * 60) * 30);
+
+// audits task to see if it is close to due or not
 var auditTask = function (taskEl) {
   // get date from task element
   var date = $(taskEl).find("span").text().trim();
